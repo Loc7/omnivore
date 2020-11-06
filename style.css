@@ -1,0 +1,100 @@
+html {
+	font-family: Helvetica, Arial, sans-serif;
+	color: #3E5E81;
+}
+
+body {
+	background: #E9EEF3;
+}
+
+#header {
+	background: #C2CEDC;
+}
+
+.logo {
+  text-indent: -9999px;
+	background: url(logo/omnivore-logo.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	height: 1em;
+}
+
+form {
+	display: inline;
+}
+
+.notification {
+	background: green;
+	color: white;
+	padding: 1em;
+	display: none;
+}
+
+textarea {
+	width: 100%;
+	height: 80vh;
+	white-space: pre-wrap;
+	font-size: 1em;
+	color: #3E5E81;
+}
+
+#replacement {
+	width: 100%;
+}
+
+.table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+	margin-top: 3em;
+	word-wrap:break-word;
+}
+
+.table thead {
+	background-color: #C2CEDC;
+  	text-align: left;	
+}
+
+.table th, td {
+	padding: .5em 1em;
+	border-left: 2px solid #C2CEDC;
+}
+
+.table th:first-child, td:first-child {
+  border-left-width: 0;
+}
+
+button {
+  transition: all 200ms linear;
+	padding: 1em;
+	cursor: pointer;
+	font-size: 1em;
+	line-height: 2em;
+	font-weight: bold;
+	color: #3E5E81;
+	background-color: #C2CEDC;
+	border: 0 none;
+	display: block;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+.buttonText:before {
+	content: "";
+	float: left;
+	width: 2em;
+	height: 2em;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACfElEQVRIibWWPWgUURSFv7MsIYjIFiGkDAhWVhZWYbc0vUUKzVhYWFiGlK4wnWgnomk3hHRWVpJmoyAECdqISAoRERErCUsIssdi5s3Mm53diOBtZnhz3z3n3J/3RsYE6yXpHHjeFihfNyh7IAljhMaG0f6gP+YMUwDoraeXLO4JlqoOJgcwSOUTOMI8Hm73P/wdQJLeNGzJvECcFAA2yiPmYIvAqs0RMCexhn0w3L7fqKZdMnVL6Nji7v6g/3Mao956uoJYRWzKbBg/lXQbOGzyb5W5yFhqlt7cwZm0d4gbQqc2O90kvdpL0lbdvVwIyXLdZTrQcND/Ar4jcSyzZVieDoAy9mdIcN5VQp1eknZAn4ENi45gs66iHW8uCzrDTo1HQjuGk6yF3RbqAJcN88BoAiBjf2ZwJD4aNoCL2FgK7dUly0hEeqaCbpIuC9r5cIUhQ2YP2JM0Gg763wB6SfoAWKkTqrRpgwLzxrAEKmpjKnNhvwSuTSMYAYRprRZZ4jrmnIt5VnaCKHzXjzI4jfUrFdilktLeWrRDRNUIAKcVMkx+riqQihYsQOGVYCFTlm13LlOAxWvgVnBu6pGoyBMO9i5wIaOX1UH5Mx/KTyWZ0AhTAEL+qxiSnmG3oqMuf8+BftcZT08ReR1iGQ+ROqV+x8k274FHIcLMGmTs48+GRZmFiqRw84Q9X2exjwCaenh/0F9r2NNotcuosMppWrD+JytvvDhCWQNrjDgveNJN0pOCiPOrIuwLjeDKUrZ2BfglKbrZqjfaAea5pKVIZQiYj7pdRix6Kpuf74jd4aB/HG2v/1XYzKuSrsnRqAJGDmNgNKz9aUQA/8P+APYgC0Djdc0eAAAAAElFTkSuQmCC")
+	no-repeat
+	left center;
+}
+
+button:hover {
+	background-color: #fff;
+	opacity: 1;
+}
+  
+button:focus {
+	outline: 1px dotted #959595;
+	outline-offset: -4px;
+}

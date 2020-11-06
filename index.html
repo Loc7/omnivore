@@ -1,0 +1,98 @@
+<html>	
+	<head>
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="stylesheet" type="text/css" href="simple-grid.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-9">
+					<h1 class="logo">Omnivore</h1>
+				</div>
+				<div class="col-3">
+					<div class="notification"></div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<span>Mode:</span>
+					<form id="mode">
+						<input type="radio" id="radio-tag" name="mode" value="tag" checked="checked">
+						<label for="radio-tag">Replace HTML-tags</label> 
+						<input type="radio" id="radio-key" name="mode" value="key">
+						<label for="radio-key">Replace HTML-tags and text-keys</label>
+					</form>
+				</div>
+			</div>					
+
+			<div class="row">
+				<div class="col-9">
+					<textarea rows="5" cols="25"></textarea>					
+				</div>
+				<div class="col-3">
+					<div id="buttons">
+						<!-- <button id="js-copy-text"><span class="buttonText">Copy text</span></button> -->
+						<button id="js-clear-text"><span class="buttonText">Clear text</span></button>
+					</div>
+
+					<div>
+						<table class="table">
+							<colgroup>
+								<col style="width:50%">
+								<col style="width:50%">
+							</colgroup> 
+							<thead>
+								<tr>
+									<th>Info</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Replacements</td>
+									<td><span id="replacements">0</span></td>
+								</tr>
+								<tr>
+									<td>Words</td>
+									<td><span id="words">0</span></td>
+								</tr>
+								<tr>
+									<td>Quick copy</td>
+									<td>
+										<input class="js-copy" type="text" value="m²">
+										<input class="js-copy" type="text" value="–">
+										<input class="js-copy" type="text" value="ß">
+									</td>
+								</tr>							
+							</tbody>
+						</table>
+					</div>
+
+					<div id="replacement">
+						<table class="table">
+							<colgroup>
+								<col style="width:50%">
+								<col style="width:50%">
+							</colgroup> 
+							<thead>
+								<tr>
+									<th>Original</th>
+									<th>Replacement</th>
+								</tr>
+							</thead>
+							<tbody id="appendReplacements">								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>		
+		</div>	
+
+		<script src="script.js"></script>
+	</body>
+</html>
