@@ -19,13 +19,22 @@
 			</div>
 
 			<div class="row">
-				<div class="col-12">
+				<div class="col-6">
 					<span>Mode:</span>
 					<form id="mode">
-						<input type="radio" id="radio-tag" name="mode" value="tag" checked="checked">
+						<input type="radio" id="radio-count" name="mode" value="word">
+						<label for="radio-count">Count words</label>
+						<input type="radio" id="radio-tag" name="mode" value="tag">
 						<label for="radio-tag">Replace HTML-tags</label> 
-						<input type="radio" id="radio-key" name="mode" value="key">
+						<input type="radio" id="radio-key" name="mode" value="key" checked="checked">
 						<label for="radio-key">Replace HTML-tags and text-keys</label>
+					</form>
+				</div>
+				<div class="col-6">
+					<span>Options:</span>
+					<form id="options">
+						<input type="checkbox" id="autocopy" name="autocopy">
+						<label for="autocopy">Auto copy</label>
 					</form>
 				</div>
 			</div>					
