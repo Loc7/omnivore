@@ -12,8 +12,8 @@ var placeholdersForOperation = []
 
 $(document).ready(function() {
   $("textarea").bind("input propertychange", function() {    
-    var mode = $('input[name=mode]:checked', '#mode').val()    
-    
+    var mode = $('input[name=mode]:checked', '#mode').val()
+
     $(".match").remove()
     placeholdersForOperation = []
 
@@ -32,7 +32,11 @@ $(document).ready(function() {
       regexpForOperation = regexpForKeys
       placeholderLeft = placeholderLeftForKeys
       ReplaceLogic(this)
-    } 
+    }
+
+    if (mode === 'word') {
+      AppendWordCountNumber($(this).val())
+    }
     
     if ($("#autocopy").is(':checked')) {
       copyText()
