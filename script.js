@@ -94,7 +94,7 @@ function initialize() {
   regexpForOperation = new RegExp()
   placeholdersForOperation = []
   $("#words").text(wordCount)
-  $("#replacement").toggle()
+  $("#replacement").hide()
 }
 
 function ReplaceLogic(textarea) {
