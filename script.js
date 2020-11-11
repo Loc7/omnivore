@@ -45,10 +45,10 @@ $(document).ready(function() {
 
   // Buttons
   // Copy text
-  // $("#js-copy-text").click(function() {
-  //   copyText()
-  //   notify("Text copied")
-  // })
+  $("#js-copy-text").click(function() {
+    copyText()
+    notify("Text copied")
+  })
 
   // Clear text
   $("#js-clear-text").click(function() {
@@ -89,6 +89,7 @@ function initialize() {
   regexpForOperation = new RegExp()
   placeholdersForOperation = []
   $("#words").text(wordCount)
+  $("#replacement").css("visibility", "collapse")
 }
 
 function ReplaceLogic(textarea) {
@@ -158,6 +159,7 @@ function AppendReplacementValues(original, replacement) {
       replacement +
       "</td></tr>"
   )
+  $("#replacement").css("visibility", "visible")
 }
 
 function GetEscapedEntity(entity) {

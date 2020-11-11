@@ -1,107 +1,138 @@
-<html>	
-	<head>
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="stylesheet" type="text/css" href="simple-grid.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	</head>
-	
-	<body>
-		<div class="container">
-			
-			<div class="row">
-				<div class="col-9">
-					<h1 class="logo">Omnivore</h1>
-				</div>
-				<div class="col-3">
-					<div class="notification"></div>
-				</div>
+<html>
+
+<head>
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+	<link rel="stylesheet" type="text/css" href="simple-grid.css" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-9">
+				<h1 class="logo">Omnivore</h1>
 			</div>
+			<div class="col-3">
+				<div class="notification"></div>
+			</div>
+		</div>
 
-			<div class="row">
-				<div class="col-6">
-					<span>Mode:</span>
-					<form id="mode">
-						<input type="radio" id="radio-count" name="mode" value="word">
-						<label for="radio-count">Count words</label>
-						<input type="radio" id="radio-tag" name="mode" value="tag">
-						<label for="radio-tag">Replace HTML-tags</label> 
-						<input type="radio" id="radio-key" name="mode" value="key" checked="checked">
-						<label for="radio-key">Replace HTML-tags and text-keys</label>
-					</form>
-				</div>
-				<div class="col-6">
-					<span>Options:</span>
-					<form id="options">
-						<input type="checkbox" id="autocopy" name="autocopy">
-						<label for="autocopy">Auto copy</label>
-					</form>
-				</div>
-			</div>					
+		<div class="row">
+			<div class="col-6">
+				<span><b>Mode:</b></span>
+				<form id="mode">
+					<input type="radio" id="radio-count" name="mode" value="word" />
+					<label for="radio-count">Count words</label>
+					<input type="radio" id="radio-tag" name="mode" value="tag" />
+					<label for="radio-tag">Replace HTML-tags</label>
+					<input type="radio" id="radio-key" name="mode" value="key" checked="checked" />
+					<label for="radio-key">Replace HTML-tags and text-keys</label>
+				</form>
+			</div>
+			<div class="col-6">
+				<span><b>Options:</b></span>
+				<form id="options">
+					<input type="checkbox" id="autocopy" name="autocopy" />
+					<label for="autocopy">Auto copy</label>
+				</form>
+			</div>
+		</div>
 
-			<div class="row">
-				<div class="col-9">
-					<textarea rows="5" cols="25"></textarea>					
-				</div>
-				<div class="col-3">
-					<div id="buttons">
-						<!-- <button id="js-copy-text"><span class="buttonText">Copy text</span></button> -->
-						<button id="js-clear-text"><span class="buttonText">Clear text</span></button>
+		<div class="row">
+			<div class="col-9">
+				<textarea placeholder="Paste text here ..." rows="5" cols="25"></textarea>
+			</div>
+			<div class="col-3">
+				<div id="buttons">
+					<div class="col-6">
+						<button id="js-copy-text">
+							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard"
+								fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+								<path fill-rule="evenodd"
+									d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+							</svg>
+							<span class="buttonText">Copy text</span>
+						</button>
 					</div>
-
-					<div>
-						<table class="table">
-							<colgroup>
-								<col style="width:50%">
-								<col style="width:50%">
-							</colgroup> 
-							<thead>
-								<tr>
-									<th>Info</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Replacements</td>
-									<td><span id="replacements">0</span></td>
-								</tr>
-								<tr>
-									<td>Words</td>
-									<td><span id="words">0</span></td>
-								</tr>
-								<tr>
-									<td>Quick copy</td>
-									<td>
-										<input class="js-copy" type="text" value="m²">
-										<input class="js-copy" type="text" value="–">
-										<input class="js-copy" type="text" value="ß">
-									</td>
-								</tr>							
-							</tbody>
-						</table>
+					<div class="col-6">
+						<button id="js-clear-text">
+							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+								<path fill-rule="evenodd"
+									d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+							</svg>
+							<span class="buttonText">Clear text</span>
+						</button>
 					</div>
+				</div>
+
+				<div class="col-12">
+					<table class="table">
+						<colgroup>
+							<col style="width: 50%" />
+							<col style="width: 50%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>Info</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Replacements</td>
+								<td><span id="replacements">0</span></td>
+							</tr>
+							<tr>
+								<td>Words</td>
+								<td><span id="words">0</span></td>
+							</tr>
+							<tr>
+								<td>Quick copy</td>
+								<td>
+									<input class="js-copy" type="text" value="m²" />
+									<input class="js-copy" type="text" value="–" />
+									<input class="js-copy" type="text" value="ß" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
 
 					<div id="replacement">
 						<table class="table">
 							<colgroup>
-								<col style="width:50%">
-								<col style="width:50%">
-							</colgroup> 
+								<col style="width: 50%" />
+								<col style="width: 50%" />
+							</colgroup>
 							<thead>
 								<tr>
 									<th>Original</th>
 									<th>Replacement</th>
 								</tr>
 							</thead>
-							<tbody id="appendReplacements">								
-							</tbody>
+							<tbody id="appendReplacements"></tbody>
 						</table>
 					</div>
 				</div>
-			</div>		
-		</div>	
+			</div>
+		</div>
 
-		<script src="script.js"></script>
-	</body>
+		<div class="row">
+			<div class="col-12">
+				<a target="_blank" href="https://github.com/Loc7/Omnivore">View on github</a>
+				<span> | </span>
+				<a href="mailto:hello@schleifenbaum.ch">hello@schleifenbaum.ch</a>
+			</div>
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+
 </html>

@@ -1,14 +1,16 @@
 html {
 	font-family: Helvetica, Arial, sans-serif;
-	color: #3E5E81;
+	color: #4c6b9b;
 }
 
 body {
-	background: #E9EEF3;
+	/* background: #E9EEF3; */
+	background: #fff;
 }
 
 #header {
-	background: #C2CEDC;
+	/* background: #C2CEDC; */
+	background: #fff;
 }
 
 .logo {
@@ -16,11 +18,14 @@ body {
 	background: url(logo/omnivore-logo.png);
 	background-size: contain;
 	background-repeat: no-repeat;
-	height: 1em;
 }
 
 form {
 	display: inline;
+}
+
+input.js-copy {
+	width: 100%;
 }
 
 .notification {
@@ -32,32 +37,38 @@ form {
 
 textarea {
 	width: 100%;
-	height: 80vh;
+	height: 75vh;
 	white-space: pre-wrap;
 	font-size: 1em;
-	color: #3E5E81;
+	color: #4c6b9b;
 }
 
 #replacement {
 	width: 100%;
+	visibility: collapse;
 }
 
 .table {
 	border-collapse: collapse;
 	table-layout: fixed;
 	width: 100%;
-	margin-top: 3em;
+	margin-top: 1em;
 	word-wrap:break-word;
+	border-bottom: 2px solid #4c6b9b;
+}
+
+.table th {
+	color: #fff;
 }
 
 .table thead {
-	background-color: #C2CEDC;
+	background-color: #4c6b9b;
   	text-align: left;	
 }
 
 .table th, td {
 	padding: .5em 1em;
-	border-left: 2px solid #C2CEDC;
+	border-left: 2px solid #4c6b9b;
 }
 
 .table th:first-child, td:first-child {
@@ -69,32 +80,20 @@ button {
 	padding: 1em;
 	cursor: pointer;
 	font-size: 1em;
-	line-height: 2em;
+	line-height: 1em;
 	font-weight: bold;
-	color: #3E5E81;
-	background-color: #C2CEDC;
+	color: #fff;
+	background-color: #4c6b9b;
 	border: 0 none;
 	display: block;
 	width: 100%;
-	margin-bottom: 1em;
 }
 
-.buttonText:before {
-	content: "";
-	float: left;
-	width: 2em;
-	height: 2em;
-	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACfElEQVRIibWWPWgUURSFv7MsIYjIFiGkDAhWVhZWYbc0vUUKzVhYWFiGlK4wnWgnomk3hHRWVpJmoyAECdqISAoRERErCUsIssdi5s3Mm53diOBtZnhz3z3n3J/3RsYE6yXpHHjeFihfNyh7IAljhMaG0f6gP+YMUwDoraeXLO4JlqoOJgcwSOUTOMI8Hm73P/wdQJLeNGzJvECcFAA2yiPmYIvAqs0RMCexhn0w3L7fqKZdMnVL6Nji7v6g/3Mao956uoJYRWzKbBg/lXQbOGzyb5W5yFhqlt7cwZm0d4gbQqc2O90kvdpL0lbdvVwIyXLdZTrQcND/Ar4jcSyzZVieDoAy9mdIcN5VQp1eknZAn4ENi45gs66iHW8uCzrDTo1HQjuGk6yF3RbqAJcN88BoAiBjf2ZwJD4aNoCL2FgK7dUly0hEeqaCbpIuC9r5cIUhQ2YP2JM0Gg763wB6SfoAWKkTqrRpgwLzxrAEKmpjKnNhvwSuTSMYAYRprRZZ4jrmnIt5VnaCKHzXjzI4jfUrFdilktLeWrRDRNUIAKcVMkx+riqQihYsQOGVYCFTlm13LlOAxWvgVnBu6pGoyBMO9i5wIaOX1UH5Mx/KTyWZ0AhTAEL+qxiSnmG3oqMuf8+BftcZT08ReR1iGQ+ROqV+x8k274FHIcLMGmTs48+GRZmFiqRw84Q9X2exjwCaenh/0F9r2NNotcuosMppWrD+JytvvDhCWQNrjDgveNJN0pOCiPOrIuwLjeDKUrZ2BfglKbrZqjfaAea5pKVIZQiYj7pdRix6Kpuf74jd4aB/HG2v/1XYzKuSrsnRqAJGDmNgNKz9aUQA/8P+APYgC0Djdc0eAAAAAElFTkSuQmCC")
-	no-repeat
-	left center;
+.buttonText {
+	margin-left: .6em;
 }
 
 button:hover {
-	background-color: #fff;
+	background-color: #d27a4efc;
 	opacity: 1;
-}
-  
-button:focus {
-	outline: 1px dotted #959595;
-	outline-offset: -4px;
 }

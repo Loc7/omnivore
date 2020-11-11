@@ -1,9 +1,15 @@
 # Omnivore
  
-This little website helps you with processing source texts for machine translation input.
+This little tool helps you preparing source texts for machine translation.
 
-Modes:
-- Replace HTML-tags with placeholders
-- Replace HTML-tags and text-keys with placeholders
+Steps:
+- set desired mode
+- copy source text into textarea
+- [Omnivore does its thing]
+- copy changed text into machine translation program
+- [MT program does its thing]
+- copy translation back into textarea
+- [Omnivore does its thing]
+- Copy changed text into target
 
-Copy the translation result back into the textarea. Automatically the original tags and/or keys will be restored around the translated text.
+If you need more functionality, please contact me at hello@schleifenbaum.ch.
