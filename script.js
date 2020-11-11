@@ -10,8 +10,8 @@ var placeholderLeft = ""
 var placeholdersForOperation = []
 
 
-$(document).ready(function() {
-  $("textarea").bind("input propertychange", function() {    
+$(document).ready(function () {
+  $("textarea").bind("input propertychange", function () {
     var mode = $('input[name=mode]:checked', '#mode').val()
 
     $(".match").remove()
@@ -37,21 +37,19 @@ $(document).ready(function() {
     if (mode === 'word') {
       AppendWordCountNumber($(this).val())
     }
-    
+
     if ($("#autocopy").is(':checked')) {
       copyText()
     }
   });
 
   // Buttons
-  // Copy text
-  $("#js-copy-text").click(function() {
+  $("#js-copy-text").click(function () {
     copyText()
     notify("Text copied")
   })
 
-  // Clear text
-  $("#js-clear-text").click(function() {
+  $("#js-clear-text").click(function () {
     $("textarea")
       .focus()
       .select()
@@ -60,23 +58,30 @@ $(document).ready(function() {
     notify("Text cleared")
   })
 
-  
-  // Quick copy
-  $(".js-copy").click(function() {
+  $(".js-copy").click(function () {
     $(this)
       .focus()
       .select()
     document.execCommand("copy")
     notify("Symbol copied")
   })
+
+  $("#autocopy").click(function () {
+    notify("Auto copy toggled")
+  })
+
+  $("#js-tutorial").click(function () {
+    $("#tutorial-container").toggle()
+    notify("Tutorial toggled")
+  })
 });
 
 function copyText() {
   $("textarea")
-      .focus()
-      .select()
-    document.execCommand("copy")
-    notify("Elements replaced and text copied")
+    .focus()
+    .select()
+  document.execCommand("copy")
+  notify("Elements replaced and text copied")
 }
 
 function notify(notification) {
@@ -89,39 +94,39 @@ function initialize() {
   regexpForOperation = new RegExp()
   placeholdersForOperation = []
   $("#words").text(wordCount)
-  $("#replacement").css("visibility", "collapse")
+  $("#replacement").toggle()
 }
 
 function ReplaceLogic(textarea) {
   var str = $(textarea).val()
   var index = 0
   var replacementValues = [str, index]
- 
+
   if (str.search(new RegExp("\\" + placeholderLeft, "i")) > -1 && entityNames.length > 0) {
-      for (var entity of entityNames) {             
-        var original = placeholderLeft + index + placeholderRight       
-        var replacement = GetEscapedEntity(entity)
-        
-        str = str.replace(new RegExp("\\" + placeholderLeft + index + "\\" + placeholderRight, "gi"), entity)
-        AppendReplacementValues(original, replacement)
-        index++
+    for (var entity of entityNames) {
+      var original = placeholderLeft + index + placeholderRight
+      var replacement = GetEscapedEntity(entity)
 
-        if (str.indexOf(placeholderLeft) == -1) {
-          break
-        }
+      str = str.replace(new RegExp("\\" + placeholderLeft + index + "\\" + placeholderRight, "gi"), entity)
+      AppendReplacementValues(original, replacement)
+      index++
+
+      if (str.indexOf(placeholderLeft) == -1) {
+        break
       }
+    }
 
-      // Remove only entities that have been replaced
-      for (i = 0; i < index; i++) {
-        entityNames.shift()
-      }
+    // Remove only entities that have been replaced
+    for (i = 0; i < index; i++) {
+      entityNames.shift()
+    }
 
-      AppendReplacementNumber(index)
-  } else {     
-      var replacementValues = RecursiveEntityReplacement(str, index)
-      str = replacementValues[0]
-      AppendReplacementNumber(replacementValues[1])
-      AppendWordCountNumber(str)
+    AppendReplacementNumber(index)
+  } else {
+    var replacementValues = RecursiveEntityReplacement(str, index)
+    str = replacementValues[0]
+    AppendReplacementNumber(replacementValues[1])
+    AppendWordCountNumber(str)
   }
 
   $(textarea).val(str)
@@ -131,7 +136,7 @@ function RecursiveEntityReplacement(str, index) {
   var hasMatch = false
   var replacementValues = [str, index]
 
-  str = str.replace(regexpForOperation, function(match) {
+  str = str.replace(regexpForOperation, function (match) {
     var original = GetEscapedEntity(match)
     var replacement = placeholderLeft + index + placeholderRight
 
@@ -154,33 +159,33 @@ function RecursiveEntityReplacement(str, index) {
 function AppendReplacementValues(original, replacement) {
   $("#appendReplacements").append(
     "<tr class='match'><td>" +
-      original +
-      "</td><td>" +
-      replacement +
-      "</td></tr>"
+    original +
+    "</td><td>" +
+    replacement +
+    "</td></tr>"
   )
-  $("#replacement").css("visibility", "visible")
+  $("#replacement").show()
 }
 
 function GetEscapedEntity(entity) {
-    entity = entity.replace(/</g, "&lt;")
-    entity = entity.replace(/>/g, "&gt;")
-    return entity;
+  entity = entity.replace(/</g, "&lt;")
+  entity = entity.replace(/>/g, "&gt;")
+  return entity;
 }
 
 function AppendReplacementNumber(number) {
-    $("#replacements").text(number)
+  $("#replacements").text(number)
 }
 
-function AppendWordCountNumber(str) { 
-    var replaceStr = "/\\" + placeholderLeft + "[0-9]*\\" + placeholderRight + "/gi"
-  
-    str = str.replace(replaceStr, "")
-    str = str.replace(/(^\s*)|(\s*$)/gi,"")
-    str = str.replace(/[ ]{2,}/gi," ")
-    str = str.replace(/\n /,"\n")
+function AppendWordCountNumber(str) {
+  var replaceStr = "/\\" + placeholderLeft + "[0-9]*\\" + placeholderRight + "/gi"
 
-    var wordCountNumber = str.trim().split(/\s+/).length
+  str = str.replace(replaceStr, "")
+  str = str.replace(/(^\s*)|(\s*$)/gi, "")
+  str = str.replace(/[ ]{2,}/gi, " ")
+  str = str.replace(/\n /, "\n")
 
-    $("#words").text(wordCountNumber)
+  var wordCountNumber = str.trim().split(/\s+/).length
+
+  $("#words").text(wordCountNumber)
 }

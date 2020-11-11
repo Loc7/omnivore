@@ -35,6 +35,8 @@
 				<form id="options">
 					<input type="checkbox" id="autocopy" name="autocopy" />
 					<label for="autocopy">Auto copy</label>
+					<input type="checkbox" id="js-tutorial" name="tutorial" checked="checked" />
+					<label for="js-tutorial">Show tutorial</label>
 				</form>
 			</div>
 		</div>
@@ -103,6 +105,19 @@
 						</tbody>
 					</table>
 
+					<div id="tutorial-container">
+						<p>Tutorial:</p>
+						<ul>
+							<li>Set desired mode</li>
+							<li>Copy source text into textarea</li>
+							<li>[Omnivore does its thing]</li>
+							<li>Copy changed text into machine translation program</li>
+							<li>[MT program does its thing]</li>
+							<li>Copy translation back into textarea</li>
+							<li>[Omnivore does its thing]</li>
+							<li>Copy changed text into target</li>
+						</ul>
+					</div>
 
 					<div id="replacement">
 						<table class="table">

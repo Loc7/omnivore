@@ -45,7 +45,7 @@ textarea {
 
 #replacement {
 	width: 100%;
-	visibility: collapse;
+	display: none;
 }
 
 .table {
