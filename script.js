@@ -1,5 +1,5 @@
 var entityNames = []
-var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>") //SVG needs special treatment
+var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^}]*}") //SVG needs special treatment
 var regexpForKeys = new RegExp(".*=")
 var placeholderLeftForTags = "(!tg" //Right part concatenated like (tg0), (tg1) etc.
 var placeholderLeftForKeys = "(!ky"
@@ -8,7 +8,6 @@ var wordCount = 0
 var regexpForOperation = new RegExp()
 var placeholderLeft = ""
 var placeholdersForOperation = []
-
 
 $(document).ready(function () {
   $("textarea").bind("input propertychange", function () {
@@ -24,11 +23,10 @@ $(document).ready(function () {
     }
 
     if (mode === "key") {
-      //1: replace HTML
       regexpForOperation = regexpForTags
       placeholderLeft = placeholderLeftForTags
       ReplaceLogic(this)
-      //2: replace Keys
+
       regexpForOperation = regexpForKeys
       placeholderLeft = placeholderLeftForKeys
       ReplaceLogic(this)
@@ -43,7 +41,6 @@ $(document).ready(function () {
     }
   });
 
-  // Buttons
   $("#js-copy-text").click(function () {
     copyText()
     notify("Text copied")
@@ -116,7 +113,6 @@ function ReplaceLogic(textarea) {
       }
     }
 
-    // Remove only entities that have been replaced
     for (i = 0; i < index; i++) {
       entityNames.shift()
     }
@@ -186,6 +182,5 @@ function AppendWordCountNumber(str) {
   str = str.replace(/\n /, "\n")
 
   var wordCountNumber = str.trim().split(/\s+/).length
-
   $("#words").text(wordCountNumber)
 }
