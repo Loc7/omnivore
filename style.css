@@ -48,6 +48,10 @@ textarea {
 	display: none;
 }
 
+#tutorial-container {
+	display: none;
+}
+
 .table {
 	border-collapse: collapse;
 	table-layout: fixed;

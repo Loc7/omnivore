@@ -1,8 +1,10 @@
 var entityNames = []
-var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^}]*}") //SVG needs special treatment
+var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^}]*}")
+var regexpForJson = new RegExp("\"[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?\"")
 var regexpForKeys = new RegExp(".*=")
-var placeholderLeftForTags = "(!tg" //Right part concatenated like (tg0), (tg1) etc.
+var placeholderLeftForTags = "(!tg" //Results in: (!tg0), (!tg1) ...
 var placeholderLeftForKeys = "(!ky"
+var placeholderLeftForJsonKeys = "(!jn"
 var placeholderRight = ")"
 var wordCount = 0
 var regexpForOperation = new RegExp()
@@ -16,12 +18,6 @@ $(document).ready(function () {
     $(".match").remove()
     placeholdersForOperation = []
 
-    if (mode === "tag") {
-      regexpForOperation = regexpForTags
-      placeholderLeft = placeholderLeftForTags
-      ReplaceLogic(this)
-    }
-
     if (mode === "key") {
       regexpForOperation = regexpForTags
       placeholderLeft = placeholderLeftForTags
@@ -32,8 +28,10 @@ $(document).ready(function () {
       ReplaceLogic(this)
     }
 
-    if (mode === 'word') {
-      AppendWordCountNumber($(this).val())
+    if (mode === "json-key") {
+      regexpForOperation = regexpForJson
+      placeholderLeft = placeholderLeftForJsonKeys
+      ReplaceLogic(this)
     }
 
     if ($("#autocopy").is(':checked')) {
@@ -53,14 +51,6 @@ $(document).ready(function () {
     document.execCommand("delete")
     initialize()
     notify("Text cleared")
-  })
-
-  $(".js-copy").click(function () {
-    $(this)
-      .focus()
-      .select()
-    document.execCommand("copy")
-    notify("Symbol copied")
   })
 
   $("#autocopy").click(function () {

@@ -22,20 +22,18 @@
 			<div class="col-6">
 				<span><b>Mode:</b></span>
 				<form id="mode">
-					<input type="radio" id="radio-count" name="mode" value="word" />
-					<label for="radio-count">Count words</label>
-					<input type="radio" id="radio-tag" name="mode" value="tag" />
-					<label for="radio-tag">Replace HTML-tags</label>
 					<input type="radio" id="radio-key" name="mode" value="key" checked="checked" />
 					<label for="radio-key">Replace HTML-tags and text-keys</label>
+					<input type="radio" id="radio-json-key" name="mode" value="json-key" />
+					<label for="radio-json-key">Replace JSON-keys</label>
 				</form>
 			</div>
 			<div class="col-6">
 				<span><b>Options:</b></span>
 				<form id="options">
-					<input type="checkbox" id="autocopy" name="autocopy" />
+					<input type="checkbox" id="autocopy" name="autocopy" checked="checked" />
 					<label for="autocopy">Auto copy</label>
-					<input type="checkbox" id="js-tutorial" name="tutorial" checked="checked" />
+					<input type="checkbox" id="js-tutorial" name="tutorial" />
 					<label for="js-tutorial">Show tutorial</label>
 				</form>
 			</div>
@@ -43,7 +41,7 @@
 
 		<div class="row">
 			<div class="col-9">
-				<textarea placeholder="Paste text here ..." rows="5" cols="25"></textarea>
+				<textarea placeholder="Paste data here ..." rows="5" cols="25"></textarea>
 			</div>
 			<div class="col-3">
 				<div id="buttons">
@@ -94,27 +92,23 @@
 								<td>Words</td>
 								<td><span id="words">0</span></td>
 							</tr>
-							<tr>
-								<td>Quick copy</td>
-								<td>
-									<input class="js-copy" type="text" value="m²" />
-									<input class="js-copy" type="text" value="–" />
-									<input class="js-copy" type="text" value="ß" />
-								</td>
-							</tr>
 						</tbody>
 					</table>
 
 					<div id="tutorial-container">
 						<p>Tutorial:</p>
+						<p>Often times a client sends you text that is filled with HTML-tags, text-keys or is a
+							JSON-file. Pasting it directly into a machine translation program produces a mess. This tool
+							helps you with placeholders and remembers them until the translated text gets copied back
+							into the textarea.</p>
 						<ul>
 							<li>Set desired mode</li>
 							<li>Copy source text into textarea</li>
-							<li>[Omnivore does its thing]</li>
+							<li>[Omnivore replaces elements with placeholders]</li>
 							<li>Copy changed text into machine translation program</li>
-							<li>[MT program does its thing]</li>
+							<li>[MT program translates the text and leaves placeholders unchanged]</li>
 							<li>Copy translation back into textarea</li>
-							<li>[Omnivore does its thing]</li>
+							<li>[Omnivore replaces placeholders with original elements]</li>
 							<li>Copy changed text into target</li>
 						</ul>
 					</div>
