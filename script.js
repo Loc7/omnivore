@@ -1,10 +1,12 @@
 var entityNames = []
 var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^}]*}")
 var regexpForJson = new RegExp("\".*\":")
+var regexpForPhp = new RegExp("\'.*=>|return|<\?php")
 var regexpForKeys = new RegExp(".*=")
 var placeholderLeftForTags = "(!tg" //Results in: (!tg0), (!tg1) ...
 var placeholderLeftForKeys = "(!ky"
 var placeholderLeftForJsonKeys = "(!jn"
+var placeholderLeftForPhpKeys = "(!hp"
 var placeholderRight = ")"
 var wordCount = 0
 var regexpForOperation = new RegExp()
@@ -31,6 +33,12 @@ $(document).ready(function () {
     if (mode === "json-key") {
       regexpForOperation = regexpForJson
       placeholderLeft = placeholderLeftForJsonKeys
+      ReplaceLogic(this)
+    }
+
+    if (mode === "php-key") {
+      regexpForOperation = regexpForPhp
+      placeholderLeft = placeholderLeftForPhpKeys
       ReplaceLogic(this)
     }
 
