@@ -1,3 +1,4 @@
+/* START Initialization */
 var entityNames = []
 var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^}]*}")
 var regexpForJson = new RegExp("\".*\":")
@@ -12,10 +13,16 @@ var wordCount = 0
 var regexpForOperation = new RegExp()
 var placeholderLeft = ""
 var placeholdersForOperation = []
+/* END Initialization */
 
 $(document).ready(function () {
   $("textarea").bind("input propertychange", function () {
     var mode = $('input[name=mode]:checked', '#mode').val()
+
+    if ($("#remove-linebreaks").is(':checked')) {
+      removeLinebreaks(this)
+      console.log($(this).val())
+    }
 
     $(".match").remove()
     placeholdersForOperation = []
@@ -47,12 +54,13 @@ $(document).ready(function () {
     }
   });
 
-  $("#js-copy-text").click(function () {
+  /* START Menu buttons */
+  $("#copy-text").click(function () {
     copyText()
     notify("Text copied")
   })
 
-  $("#js-clear-text").click(function () {
+  $("#clear-text").click(function () {
     $("textarea")
       .focus()
       .select()
@@ -60,15 +68,22 @@ $(document).ready(function () {
     initialize()
     notify("Text cleared")
   })
+  /* END Menu buttons */
 
+  /* START Option buttons */
   $("#autocopy").click(function () {
     notify("Auto copy toggled")
   })
 
-  $("#js-tutorial").click(function () {
+  $("#remove-linebreaks").click(function () {
+    notify("Line break removal toggled")
+  })
+
+  $("#tutorial").click(function () {
     $("#tutorial-container").toggle()
     notify("Tutorial toggled")
   })
+  /* END Option buttons */
 });
 
 function copyText() {
@@ -77,6 +92,12 @@ function copyText() {
     .select()
   document.execCommand("copy")
   notify("Elements replaced and text copied")
+}
+
+function removeLinebreaks(textarea) {
+  var str = $(textarea).val()
+  str = str.replace(/(\n|\r)/gm, "")
+  $(textarea).val(str)
 }
 
 function notify(notification) {

@@ -24,7 +24,7 @@
 					<span><b>Mode:</b></span>
 					<form id="mode">
 						<input type="radio" id="radio-key" name="mode" value="key" checked="checked" />
-						<label for="radio-key">Replace HTML-tags & text/PHP-keys</label>
+						<label for="radio-key">Replace HTML-tags & text-/PHP-keys</label>
 						<input type="radio" id="radio-json-key" name="mode" value="json-key" />
 						<label for="radio-json-key">Replace JSON-keys</label>
 					</form>
@@ -34,8 +34,10 @@
 					<form id="options">
 						<input type="checkbox" id="autocopy" name="autocopy" checked="checked" />
 						<label for="autocopy">Auto copy</label>
-						<input type="checkbox" id="js-tutorial" name="tutorial" />
-						<label for="js-tutorial">Show tutorial</label>
+						<input type="checkbox" id="remove-linebreaks" name="remove-linebreaks" checked="checked" />
+						<label for="remove-linebreaks">Remove soft line breaks</label>
+						<input type="checkbox" id="tutorial" name="tutorial" />
+						<label for="tutorial">Show tutorial</label>
 					</form>
 				</div>
 
@@ -44,7 +46,7 @@
 			<div class="col-3">
 				<div id="buttons">
 					<div class="col-6">
-						<button id="js-copy-text">
+						<button id="copy-text">
 							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard"
 								fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd"
@@ -56,7 +58,7 @@
 						</button>
 					</div>
 					<div class="col-6">
-						<button id="js-clear-text">
+						<button id="clear-text">
 							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor"
 								xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd"
