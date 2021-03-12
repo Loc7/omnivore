@@ -96,7 +96,7 @@ function copyText() {
 
 function removeLinebreaks(textarea) {
   var str = $(textarea).val()
-  str = str.replace(/(\n|\r)/gm, "")
+  str = str.replace(/\s\n/gm, " ")
   $(textarea).val(str)
 }
 
