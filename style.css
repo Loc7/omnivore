@@ -94,10 +94,15 @@ button {
 }
 
 .buttonText {
-	margin-left: .6em;
+	margin-left: .5em;
 }
 
 button:hover {
 	background-color: #d27a4efc;
 	opacity: 1;
+}
+
+label {
+	align-items: baseline;
+	display: flex;
 }

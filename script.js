@@ -21,7 +21,10 @@ $(document).ready(function () {
 
     if ($("#remove-linebreaks").is(':checked')) {
       removeLinebreaks(this)
-      console.log($(this).val())
+    }
+
+    if ($("#remove-whitespace").is(':checked')) {
+      removeWhitespace(this)
     }
 
     $(".match").remove()
@@ -60,13 +63,13 @@ $(document).ready(function () {
     notify("Text copied")
   })
 
-  $("#clear-text").click(function () {
+  $("#reset").click(function () {
     $("textarea")
       .focus()
       .select()
     document.execCommand("delete")
     initialize()
-    notify("Text cleared")
+    notify("Omnivore has been reset.")
   })
   /* END Menu buttons */
 
@@ -96,7 +99,13 @@ function copyText() {
 
 function removeLinebreaks(textarea) {
   var str = $(textarea).val()
-  str = str.replace(/\s\n/gm, " ")
+  str = str.replace(/\s\n|(?<=[^\.:])\n/gm, " ")
+  $(textarea).val(str)
+}
+
+function removeWhitespace(textarea) {
+  var str = $(textarea).val()
+  str = str.replace(/\s+/gm, " ")
   $(textarea).val(str)
 }
 
