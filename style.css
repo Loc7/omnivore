@@ -33,11 +33,12 @@ input.js-copy {
 	color: white;
 	padding: 1em;
 	display: none;
+	margin: 0 .5em;
 }
 
 textarea {
 	width: 100%;
-	height: 75vh;
+	height: 67vh;
 	white-space: pre-wrap;
 	font-size: 1em;
 	color: #4c6b9b;

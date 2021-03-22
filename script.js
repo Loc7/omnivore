@@ -2,12 +2,12 @@
 var entityNames = []
 var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^}]*}")
 var regexpForJson = new RegExp("\".*\":")
-var regexpForPhp = new RegExp("\'.*=>|return|<\?php")
+//var regexpForPhp = new RegExp("\'.*=>|return|<\?php")
 var regexpForKeys = new RegExp(".*=")
 var placeholderLeftForTags = "(!tg" //Results in: (!tg0), (!tg1) ...
 var placeholderLeftForKeys = "(!ky"
 var placeholderLeftForJsonKeys = "(!jn"
-var placeholderLeftForPhpKeys = "(!hp"
+//var placeholderLeftForPhpKeys = "(!hp"
 var placeholderRight = ")"
 var wordCount = 0
 var regexpForOperation = new RegExp()
@@ -46,11 +46,11 @@ $(document).ready(function () {
       ReplaceLogic(this)
     }
 
-    if (mode === "php-key") {
-      regexpForOperation = regexpForPhp
-      placeholderLeft = placeholderLeftForPhpKeys
-      ReplaceLogic(this)
-    }
+    // if (mode === "php-key") {
+    //   regexpForOperation = regexpForPhp
+    //   placeholderLeft = placeholderLeftForPhpKeys
+    //   ReplaceLogic(this)
+    // }
 
     if ($("#autocopy").is(':checked')) {
       copyText()
@@ -63,11 +63,7 @@ $(document).ready(function () {
     notify("Text copied")
   })
 
-  $("#reset").click(function () {
-    $("textarea")
-      .focus()
-      .select()
-    document.execCommand("delete")
+  $("#reset").click(function () {  
     initialize()
     notify("Omnivore has been reset.")
   })
@@ -80,6 +76,10 @@ $(document).ready(function () {
 
   $("#remove-linebreaks").click(function () {
     notify("Line break removal toggled")
+  })
+
+  $("#remove-whitespace").click(function () {
+    notify("Whitespace removal toggled")
   })
 
   $("#tutorial").click(function () {
@@ -114,6 +114,10 @@ function notify(notification) {
 }
 
 function initialize() {
+  $("textarea")
+      .focus()
+      .select()
+    document.execCommand("delete")
   entityNames = []
   wordCount = 0
   regexpForOperation = new RegExp()
