@@ -19,41 +19,43 @@ $(document).ready(function () {
   $("textarea").bind("input propertychange", function () {
     var mode = $('input[name=mode]:checked', '#mode').val()
 
-    if ($("#remove-linebreaks").is(':checked')) {
-      removeLinebreaks(this)
-    }
+    if (mode != "bypass") {
+      if ($("#remove-linebreaks").is(':checked')) {
+        removeLinebreaks(this)
+      }
 
-    if ($("#remove-whitespace").is(':checked')) {
-      removeWhitespace(this)
-    }
+      if ($("#remove-whitespace").is(':checked')) {
+        removeWhitespace(this)
+      }
 
-    $(".match").remove()
-    placeholdersForOperation = []
+      $(".match").remove()
+      placeholdersForOperation = []
 
-    if (mode === "key") {
-      regexpForOperation = regexpForTags
-      placeholderLeft = placeholderLeftForTags
-      ReplaceLogic(this)
+      if (mode === "key") {
+        regexpForOperation = regexpForTags
+        placeholderLeft = placeholderLeftForTags
+        ReplaceLogic(this)
 
-      regexpForOperation = regexpForKeys
-      placeholderLeft = placeholderLeftForKeys
-      ReplaceLogic(this)
-    }
+        regexpForOperation = regexpForKeys
+        placeholderLeft = placeholderLeftForKeys
+        ReplaceLogic(this)
+      }
 
-    if (mode === "json-key") {
-      regexpForOperation = regexpForJson
-      placeholderLeft = placeholderLeftForJsonKeys
-      ReplaceLogic(this)
-    }
+      if (mode === "json-key") {
+        regexpForOperation = regexpForJson
+        placeholderLeft = placeholderLeftForJsonKeys
+        ReplaceLogic(this)
+      }
 
-    // if (mode === "php-key") {
-    //   regexpForOperation = regexpForPhp
-    //   placeholderLeft = placeholderLeftForPhpKeys
-    //   ReplaceLogic(this)
-    // }
+      // if (mode === "php-key") {
+      //   regexpForOperation = regexpForPhp
+      //   placeholderLeft = placeholderLeftForPhpKeys
+      //   ReplaceLogic(this)
+      // }
 
-    if ($("#autocopy").is(':checked')) {
-      copyText()
+      if ($("#autocopy").is(':checked')) {
+        copyText()
+      }
     }
   });
 
@@ -63,7 +65,7 @@ $(document).ready(function () {
     notify("Text copied")
   })
 
-  $("#reset").click(function () {  
+  $("#reset").click(function () {
     initialize()
     notify("Omnivore has been reset.")
   })
@@ -115,9 +117,9 @@ function notify(notification) {
 
 function initialize() {
   $("textarea")
-      .focus()
-      .select()
-    document.execCommand("delete")
+    .focus()
+    .select()
+  document.execCommand("delete")
   entityNames = []
   wordCount = 0
   regexpForOperation = new RegExp()
