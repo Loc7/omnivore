@@ -56,6 +56,8 @@ $(document).ready(function () {
       if ($("#autocopy").is(':checked')) {
         copyText()
       }
+    } else {
+      AppendWordCountNumber($(this).val())
     }
   });
 
