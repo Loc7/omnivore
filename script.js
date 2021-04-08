@@ -20,14 +20,6 @@ $(document).ready(function () {
     var mode = $('input[name=mode]:checked', '#mode').val()
 
     if (mode != "bypass") {
-      if ($("#remove-linebreaks").is(':checked')) {
-        removeLinebreaks(this)
-      }
-
-      if ($("#remove-whitespace").is(':checked')) {
-        removeWhitespace(this)
-      }
-
       $(".match").remove()
       placeholdersForOperation = []
 
@@ -52,6 +44,14 @@ $(document).ready(function () {
       //   placeholderLeft = placeholderLeftForPhpKeys
       //   ReplaceLogic(this)
       // }
+
+      if ($("#remove-linebreaks").is(':checked')) {
+        removeLinebreaks(this)
+      }
+
+      if ($("#remove-whitespace").is(':checked')) {
+        removeWhitespace(this)
+      }
 
       if ($("#autocopy").is(':checked')) {
         copyText()
