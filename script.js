@@ -16,6 +16,8 @@ var placeholdersForOperation = []
 /* END Initialization */
 
 $(document).ready(function () {
+  $("textarea").focus()
+
   $("textarea").bind("input propertychange", function () {
     var mode = $('input[name=mode]:checked', '#mode').val()
 
