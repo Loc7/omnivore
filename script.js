@@ -109,7 +109,7 @@ function removeLinebreaks(textarea) {
 
 function removeWhitespace(textarea) {
   var str = $(textarea).val()
-  str = str.replace(/\s+/gm, " ")
+  str = str.replace(/[  ]+/gm, " ")
   $(textarea).val(str)
 }
 
