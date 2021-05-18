@@ -10,6 +10,7 @@ var placeholderLeftForJsonKeys = "(!jn"
 //var placeholderLeftForPhpKeys = "(!hp"
 var placeholderRight = ")"
 var wordCount = 0
+var characterCount = 0
 var regexpForOperation = new RegExp()
 var placeholderLeft = ""
 var placeholdersForOperation = []
@@ -126,9 +127,11 @@ function initialize() {
   document.execCommand("delete")
   entityNames = []
   wordCount = 0
+  characterCount = 0
   regexpForOperation = new RegExp()
   placeholdersForOperation = []
   $("#words").text(wordCount)
+  $("#characters").text(characterCount)
   $("#replacement").hide()
 }
 
@@ -219,6 +222,8 @@ function AppendWordCountNumber(str) {
   str = str.replace(/[ ]{2,}/gi, " ")
   str = str.replace(/\n /, "\n")
 
-  var wordCountNumber = str.trim().split(/\s+/).length
-  $("#words").text(wordCountNumber)
+  wordCount = str.trim().split(/\s+/).length
+  characterCount = str.length
+  $("#words").text(wordCount)
+  $("#characters").text(characterCount)
 }
