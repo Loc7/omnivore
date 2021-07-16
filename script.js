@@ -1,15 +1,16 @@
 /* START Initialization */
 var entityNames = []
-var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^}]*}")
+var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^\"}]*}")
 var regexpForJson = new RegExp("\".*\":")
 //var regexpForPhp = new RegExp("\'.*=>|return|<\?php")
-var regexpForKeys = new RegExp(".*=")
+var regexpForKeys = new RegExp("[^\"]*=")
 var placeholderLeftForTags = "(!tg" //Results in: (!tg0), (!tg1) ...
 var placeholderLeftForKeys = "(!ky"
 var placeholderLeftForJsonKeys = "(!jn"
 //var placeholderLeftForPhpKeys = "(!hp"
 var placeholderRight = ")"
 var wordCount = 0
+var wordCountWithoutReplacements = 0
 var characterCount = 0
 var regexpForOperation = new RegExp()
 var placeholderLeft = ""
@@ -26,27 +27,21 @@ $(document).ready(function () {
       $(".match").remove()
       placeholdersForOperation = []
 
-      if (mode === "key") {
+      if (mode === "non-text") {
         regexpForOperation = regexpForTags
         placeholderLeft = placeholderLeftForTags
-        ReplaceLogic(this)
+        ReplaceLogic(this)      
 
-        regexpForOperation = regexpForKeys
-        placeholderLeft = placeholderLeftForKeys
-        ReplaceLogic(this)
-      }
-
-      if (mode === "json-key") {
         regexpForOperation = regexpForJson
         placeholderLeft = placeholderLeftForJsonKeys
         ReplaceLogic(this)
       }
 
-      // if (mode === "php-key") {
-      //   regexpForOperation = regexpForPhp
-      //   placeholderLeft = placeholderLeftForPhpKeys
-      //   ReplaceLogic(this)
-      // }
+      if (mode === "text-keys") {
+        regexpForOperation = regexpForKeys
+        placeholderLeft = placeholderLeftForKeys
+        ReplaceLogic(this)
+      }
 
       if ($("#remove-linebreaks").is(':checked')) {
         removeLinebreaks(this)
@@ -127,6 +122,7 @@ function initialize() {
   document.execCommand("delete")
   entityNames = []
   wordCount = 0
+  wordCountWithoutReplacements = 0
   characterCount = 0
   regexpForOperation = new RegExp()
   placeholdersForOperation = []
@@ -163,7 +159,7 @@ function ReplaceLogic(textarea) {
     var replacementValues = RecursiveEntityReplacement(str, index)
     str = replacementValues[0]
     AppendReplacementNumber(replacementValues[1])
-    AppendWordCountNumber(str)
+    AppendWordCountNumber(str, replacementValues[1])
   }
 
   $(textarea).val(str)
@@ -214,16 +210,20 @@ function AppendReplacementNumber(number) {
   $("#replacements").text(number)
 }
 
-function AppendWordCountNumber(str) {
+function AppendWordCountNumber(str, replacementCount) {
   var replaceStr = "/\\" + placeholderLeft + "[0-9]*\\" + placeholderRight + "/gi"
 
   str = str.replace(replaceStr, "")
+  str = str.replace(/[()[\]{},]/gi, "")
   str = str.replace(/(^\s*)|(\s*$)/gi, "")
   str = str.replace(/[ ]{2,}/gi, " ")
   str = str.replace(/\n /, "\n")
 
   wordCount = str.trim().split(/\s+/).length
+  wordCountWithoutReplacements = wordCount
+  wordCount -= replacementCount
+
   characterCount = str.length
-  $("#words").text(wordCount)
+  $("#words").text(wordCount + " (including placeholders: " + wordCountWithoutReplacements)
   $("#characters").text(characterCount)
 }
