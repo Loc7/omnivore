@@ -2,15 +2,13 @@
 var entityNames = []
 var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^\"}]*}")
 var regexpForJson = new RegExp("\".*\":")
-//var regexpForPhp = new RegExp("\'.*=>|return|<\?php")
 var regexpForKeys = new RegExp("[^\"]*=")
 var placeholderLeftForTags = "(!tg" //Results in: (!tg0), (!tg1) ...
 var placeholderLeftForKeys = "(!ky"
 var placeholderLeftForJsonKeys = "(!jn"
-//var placeholderLeftForPhpKeys = "(!hp"
 var placeholderRight = ")"
 var wordCount = 0
-var wordCountWithoutReplacements = 0
+var replacementCount = 0
 var characterCount = 0
 var regexpForOperation = new RegExp()
 var placeholderLeft = ""
@@ -122,10 +120,11 @@ function initialize() {
   document.execCommand("delete")
   entityNames = []
   wordCount = 0
-  wordCountWithoutReplacements = 0
   characterCount = 0
+  replacementCount = 0
   regexpForOperation = new RegExp()
   placeholdersForOperation = []
+  $("#replacements").text(replacementCount)
   $("#words").text(wordCount)
   $("#characters").text(characterCount)
   $("#replacement").hide()
@@ -154,12 +153,12 @@ function ReplaceLogic(textarea) {
       entityNames.shift()
     }
 
-    AppendReplacementNumber(index)
+    AppendReplacementCountNumber(index)
   } else {
     var replacementValues = RecursiveEntityReplacement(str, index)
     str = replacementValues[0]
-    AppendReplacementNumber(replacementValues[1])
-    AppendWordCountNumber(str, replacementValues[1])
+    AppendReplacementCountNumber(replacementValues[1])
+    AppendWordCountNumber(str)
   }
 
   $(textarea).val(str)
@@ -206,24 +205,23 @@ function GetEscapedEntity(entity) {
   return entity;
 }
 
-function AppendReplacementNumber(number) {
-  $("#replacements").text(number)
+function AppendReplacementCountNumber(count) {
+  replacementCount += count
+  $("#replacements").text(replacementCount)
 }
 
-function AppendWordCountNumber(str, replacementCount) {
-  var replaceStr = "/\\" + placeholderLeft + "[0-9]*\\" + placeholderRight + "/gi"
-
-  str = str.replace(replaceStr, "")
-  str = str.replace(/[()[\]{},]/gi, "")
+function AppendWordCountNumber(str) {
+  str = str.replace(/\(!tg[0-9]*\)/gi, "")
+  str = str.replace(/\(!jn[0-9]*\)/gi, "")
+  str = str.replace(/\(!ky[0-9]*\)/gi, "")
+  str = str.replace(/[\(\)\[\]\{\}\,]/gi, "")
   str = str.replace(/(^\s*)|(\s*$)/gi, "")
   str = str.replace(/[ ]{2,}/gi, " ")
   str = str.replace(/\n /, "\n")
 
   wordCount = str.trim().split(/\s+/).length
-  wordCountWithoutReplacements = wordCount
-  wordCount -= replacementCount
-
   characterCount = str.length
-  $("#words").text(wordCount + " (including placeholders: " + wordCountWithoutReplacements)
+
+  $("#words").text(wordCount)
   $("#characters").text(characterCount)
 }
