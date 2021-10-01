@@ -1,7 +1,7 @@
 /* START Initialization */
 var entityNames = []
 var regexpForTags = new RegExp("<svg[^>]*>(.*?)<\/svg>|<[^>]*>|{[^\"}]*}")
-var regexpForJson = new RegExp("\".*\"\s*:")
+var regexpForJson = new RegExp("\".*\".*:")
 var regexpForKeys = new RegExp("[^\"\r\n].*=")
 var placeholderLeftForTags = "(!tg" //Results in: (!tg0), (!tg1) ...
 var placeholderLeftForKeys = "(!ky"
