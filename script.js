@@ -36,6 +36,10 @@ $(document).ready(function () {
       }
 
       if (mode === "text-keys") {
+        regexpForOperation = regexpForTags
+        placeholderLeft = placeholderLeftForTags
+        ReplaceLogic(this)
+
         regexpForOperation = regexpForKeys
         placeholderLeft = placeholderLeftForKeys
         ReplaceLogic(this)
